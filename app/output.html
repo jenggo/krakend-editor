@@ -1,0 +1,58 @@
+<form method="post" action="/output">
+  <table class="table is-fullwidth is-hoverable is-striped">
+    <thead>
+      <tr>
+        <th>Endpoint</th>
+        <th>URL Pattern</th>
+        <th>Host</th>
+        <th>Method</th>
+        <th>Proxy</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Endpoint</th>
+        <th>URL Pattern</th>
+        <th>Host</th>
+        <th>Method</th>
+        <th>Proxy</th>
+        <th></th>
+      </tr>
+    </tfoot>
+    <repeat group="{{ @SESSION.OUTPUT }}" value="{{ @o }}">
+      <tbody>
+        <tr>
+          <td><input class="input" type="text" value="{{ @o.endpoint_fe }}" name="endpoint_fe[]" required></td>
+          <td><input class="input" type="text" value="{{ @o.endpoint_be }}" name="endpoint_be[]" required></td>
+          <td><input class="input" type="text" value="{{ @o.host }}" name="host[]" required></td>
+          <td>
+            <div class="select">
+              <select name="method[]">
+                <option <check if="{{ @o.method == 'GET' }}">selected</check> value="GET">GET</option>
+                <option <check if="{{ @o.method == 'POST' }}">selected</check> value="POST">POST</option>
+                <option <check if="{{ @o.method == 'PUT' }}">selected</check> value="PUT">PUT</option>
+                <option <check if="{{ @o.method == 'DELETE' }}">selected</check> value="DELETE">DELETE</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="select">
+              <select name="encoding[]">
+                <option value="no-op">No</option>
+                <option <check if="{{ @o.encoding == 'json' }}">selected</check> value="json">Yes</option>
+              </select>
+            </div>
+          </td>
+          <td><span class="delete hapus"></span></td>
+        </tr>
+      </tbody>
+    </repeat>
+  </table>
+  <button class="button is-primary is-pulled-right is-medium">
+    <span class="icon is-small">
+      <i class="fas fa-save"></i>
+    </span>
+    <span>Save</span>
+  </button>
+</form>
