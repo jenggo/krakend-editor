@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "NST Krakend",
+  "port": {{ @port }},
+  "timeout": "{{ @timeout }}",
+  "cache_ttl": "{{ @cache_ttl }}",
+  "output_encoding": "json",
+  "extra_config": {{ @extra_config | raw }},
+  "endpoints": [
+    <repeat group="{{ @endpoints }}" value="{{ @endpoint }}">
+      {{ @endpoint }}
+    </repeat>
+    {
+      "endpoint": "/let-it-blank",
+      "querystring_params": ["*"],
+      "backend": [
+        {
+          "url_pattern": "/let-it-blank",
+          "host": ["let-it-blank"],
+          "encoding": "no-op"
+        }
+      ]
+    }
+  ]
+}

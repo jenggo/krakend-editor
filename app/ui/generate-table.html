@@ -1,0 +1,61 @@
+<div class="box">
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>Endpoint</th>
+                <th>Url Pattern</th>
+                <th>Encoding</th>
+                <th>Methods</th>
+                <th></th>
+            </tr>
+        </thead>
+        <check if="{{ @jumlah_endpoint > 10}}">
+        <tfoot>
+            <tr>
+                <th>Endpoint</th>
+                <th>Url Pattern</th>
+                <th>Encoding</th>
+                <th>Methods</th>
+                <th></th>
+            </tr>
+        </tfoot>
+        </check>
+        <tbody>
+        <repeat group="{{ range(0, (@jumlah_endpoint - 1)) }}" value="{{ @jml }}">
+            <tr>
+                <td>
+                    <input type="text" name="endpoint[{{ @jml }}]" class="input" autocomplete="off" required placeholder="Endpoint" />
+                </td>
+                <td>
+                    <input type="text" name="url_pattern[{{ @jml }}]" class="input" autocomplete="off" required placeholder="URL Pattern" />
+                </td>
+                <td>
+                    <div class="select">
+                        <select name="encoding[{{ @jml }}]">
+                            <repeat group="{{ @USE_ENCODINGS }}" value="{{ @encoding }}">
+                                <option value="{{ @encoding }}">{{ @encoding }}</option>
+                            </repeat>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <select multiple name="methods[{{ @jml }}][]" class="multi-choice is-small">
+                        <repeat group="{{ @USE_METHODS }}" value="{{ @m }}">
+                            <option value="{{ @m }}" selected }}>{{ @m }}</option>
+                        </repeat>
+                    </select>
+                </td>
+                <td>
+                    <check if="{{ @jumlah_endpoint > 1}}">
+                        <span class="icon is-2 has-text-danger hapus"><i class="fas fa-minus"></i></span>
+                    </check>
+                </td>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
+</div>
+<button class="button is-primary is-fullwidth is-medium">
+    <span class="icon is-small"><i class="fas fa-download"></i></span>
+    <span>Create &amp; Download</span>
+</button>

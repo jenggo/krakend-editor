@@ -1,0 +1,53 @@
+<form method="post" action="/save" id="form_save">
+    <div class="box">
+        <div class="field">
+            <label class="label">Host</label>
+            <input type="text" name="host" class="input is-medium is-family-monospace" autocomplete="off" required value="{{ @DATA.0.backend.0.host.0 }}" />
+        </div>
+    </div>
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>Endpoint</th>
+                <th>Url Pattern</th>
+                <th>Encoding</th>
+                <th>Methods</th>
+                <th colspan="2">Extra</th>
+                <th><a class="button is-warning is-small tambah"><i class="icon is-medium"><i class="fas fa-plus"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{ @DATA }}" value="{{ @d }}">
+            <tr>
+                <td><input type="text" name="endpoint[]" class="input" autocomplete="off" required value="{{ @d.endpoint }}" /></td>
+                <td><input type="text" name="url_pattern[]" class="input" autocomplete="off" required value="{{ @d.backend.0.url_pattern }}" /></td>
+                <td>
+                    <div class="select">
+                        <select name="encoding[]">
+                        <repeat group="{{ @USE_ENCODINGS }}" value="{{ @e }}">
+                            <option {{ @e === @d.backend.0.encoding ? 'selected' : '' }} value="{{ @e }}">{{ @e }}</option>
+                        </repeat>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="select">
+                        <select name="method[]">
+                        <repeat group="{{ @USE_METHODS }}" value="{{ @m }}">
+                            <option {{ @m === @d.method ? 'selected' : '' }} value="{{ @m }}">{{ @m }}</option>
+                        </repeat>
+                        </select>
+                    </div>
+                </td>
+                <td><input type="text" name="querystring_params[]" class="input" autocomplete="off" value="{{ (@d.querystring_params) ? implode(',', @d.querystring_params) : '' }}" placeholder="Querystring params" title="Querystring params" /></td>
+                <td><input type="text" name="headers_to_pass[]" class="input" autocomplete="off" value="{{ (@d.headers_to_pass) ? implode(',', @d.headers_to_pass) : '' }}" placeholder="Headers to pass" title="Headers to pass" /></td>
+                <td><span class="icon is-medium has-text-danger has-text-centered hapus"><i class="fas fa-minus"></i></span></td>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
+    <button class="button is-fullwidth is-primary">
+        <span class="icon is-small"><i class="fas fa-download"></i></span>
+        <span>Save</span>
+    </button>
+</form>

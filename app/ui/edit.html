@@ -1,0 +1,51 @@
+<form method="post" action="/edit" enctype="multipart/form-data" id="form_upload" class="field">
+  <div class="file has-name is-fullwidth is-link">
+    <label class="file-label">
+      <input class="file-input" type="file" name="file" accept=".json">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          Upload
+        </span>
+      </span>
+      <span class="file-name"></span>
+    </label>
+  </div>
+  <div class="is-divider" data-content="OR"></div>
+  <div class="field">
+    <div class="control">
+      <textarea id="textarea" class="textarea is-primary is-small is-family-monospace" placeholder="Paste json here"></textarea>
+    </div>
+  </div>
+</form>
+<div id="upload_result"></div>
+
+<table class="is-hidden">
+  <tr id="blank_table">
+    <td><input type="text" name="endpoint[]" class="input" required autocomplete="off" /></td>
+    <td><input type="text" name="url_pattern[]" class="input" required autocomplete="off" /></td>
+    <td>
+      <div class="select">
+        <select name="encoding[]">
+        <repeat group="{{ @USE_ENCODINGS }}" value="{{ @e }}">
+          <option value="{{ @e }}">{{ @e }}</option>
+        </repeat>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="select">
+        <select name="method[]">
+        <repeat group="{{ @USE_METHODS }}" value="{{ @m }}">
+          <option value="{{ @m }}">{{ @m }}</option>
+        </repeat>
+        </select>
+      </div>
+    </td>
+    <td><input type="text" name="querystring_params[]" class="input" autocomplete="off" placeholder="Querystring params" title="Querystring params" /></td>
+    <td><input type="text" name="headers_to_pass[]" class="input" autocomplete="off" placeholder="Headers to pass" title="Headers to pass" /></td>
+    <td><span class="icon is-medium has-text-danger has-text-centered hapus"><i class="fas fa-minus"></i></span></td>
+  </tr>
+</table>

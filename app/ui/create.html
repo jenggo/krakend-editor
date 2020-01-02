@@ -1,0 +1,101 @@
+<form method="post" action="/create" id="form_create">
+    <div class="box">
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Port, Timeout, TTL</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <input type="number" name="port" class="input" autocomplete="off" required value="8080" placeholder="Port, exp: 8080" />
+                    </div>
+                    <div class="field">
+                        <input type="text" name="timeout" class="input" autocomplete="off" required value="3000ms" placeholder="Timeput, exp: 3000ms" />
+                    </div>
+                    <div class="field">
+                        <input type="text" name="cache_ttl" class="input" autocomplete="off" required value="0s" placeholder="Cache TTL, exp: 5s" />
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Allowed Method</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            <select multiple name="allow_methods[]" class="multi-choice" required>
+                                <repeat group="{{ @USE_ALLOW_METHODS }}" value="{{ @method }}">
+                                    <option value="{{ @method }}" {{ (@method == 'GET' || @method == 'POST' || @method == 'PUT' || @method == 'DELETE') || @method == 'OPTIONS' ? 'selected' : '' }}>{{ @method }}</option>
+                                </repeat>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Allowed Headers</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            <input type="text" name="allow_headers" class="input" required value="Authorization, Content-Type" autocomplete="off" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="field-label">
+                    <input id="with_krakend" type="checkbox" name="with_krakend" class="switch" />
+                    <label class="label" for="with_krakend">With krakend.json</label>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">Host</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <input type="text" name="host" class="input" autocomplete="off" required placeholder="Host name" />
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">Querystring Params</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <input type="text" name="querystring_params" class="input" autocomplete="off" placeholder="Querystring Params for GET ALL, divide by comma; exp: search, limit, sortby" />
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">Headers to Pass</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <input type="text" name="headers_to_pass" class="input" autocomplete="off" placeholder="Headers to Pass for every endpoint, divide by comma; exp: Authorization, Content-Type" />
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label class="label">Number of Endpoints</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <input id="endpoint-generate" type="number" class="input" autocomplete="off" required placeholder="No. of endpoints" />
+                </div>
+            </div>
+        </div>
+        <div class="buttons is-centered">
+            <a id="button-generate" class="button is-success">
+                <span class="icon is-small"><i class="fas fa-cogs"></i></span>
+                <span>Generate endpoints</span>
+            </a>
+        </div>
+        <div id="table-generate"></div>
+</form>

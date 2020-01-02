@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>krakend.json Editor</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/css/selectize.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulmaswatch@0.7.5/cosmo/bulmaswatch.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma-switch@2/dist/css/bulma-switch.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma-extensions@6/bulma-divider/dist/css/bulma-divider.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ @UI }}style.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
+  </head>
+  <body>
+    <section class="section">
+        <div id="menu-tabs" class="tabs is-medium is-centered is-boxed is-fullwidth">
+            <ul>
+                <li {{ (@PATH == '/' ? 'class="is-active"' : '') }}>
+                    <a href="/">
+                        <span class="icon is-small"><i class="fas fa-sticky-note"></i></span>
+                        <span>Create New</span>
+                    </a>
+                </li>
+                <li  {{ (@PATH == '/edit' ? 'class="is-active"' : '') }}>
+                    <a href="/edit">
+                        <span class="icon is-small"><i class="fas fa-pencil-alt"></i></span>
+                        <span>Edit Endpoints</span>
+                    </a>
+                </li>
+                <li  {{ (@PATH == '/convert' ? 'class="is-active"' : '') }}>
+                    <a href="/convert">
+                        <span class="icon is-small"><i class="fas fa-file-import"></i></span>
+                        <span>Convert Single to Multi Config</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <div class="section" id="container"><include href="{{ @TEMPLATE }}" /></div>
+    <script type="text/javascript" src="{{ @UI }}jscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.tambah, .kurang, .hapus {
+  cursor: pointer;
+}
+.selectize-input .item {
+  background-color: #17E2BE !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+.selectize-input .item a:hover {
+  background-color: #E2171A !important;
+}
+.selectize-input .item a {
+  background-color: #9EADAA;
+  color: #fff !important;
+}
+.selectize-input {
+  min-height: 2.8em !important;
+}
+td .selectize-input {
+  max-width: 21.5em !important;
+}
+.steps-content {
+  margin-top: 5em !important;
+}
+.steps-actions {
+  margin-top: 3em !important;
+}
+#button-convert {
+  margin-top: 2em
+}
